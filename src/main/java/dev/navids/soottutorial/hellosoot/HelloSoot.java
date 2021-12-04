@@ -38,6 +38,8 @@ public class HelloSoot {
         SootMethod sm = mainClass.getMethodByName(methodName);
         JimpleBody body = (JimpleBody) sm.retrieveActiveBody();
 
+        System.out.println("Scene: "+Scene.v().getClasses());
+
         // Print some information about printFizzBuzz
         System.out.println("Method Signature: " + sm.getSignature());
         System.out.println("--------------");

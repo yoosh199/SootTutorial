@@ -1,7 +1,7 @@
 #!/bin/bash
-BUILDTOOLS=$ANDROID_HOME/build-tools/29.0.3
-zipalign=$BUILDTOOLS/zipalign
-apksigner=$BUILDTOOLS/apksigner
+BUILDTOOLS=$ANDROID_HOME/build-tools/30.0.2
+zipalign=$BUILDTOOLS/zipalign.exe
+apksigner=$BUILDTOOLS/apksigner.bat
 INSTRUMENTED_APP=$1
 KEY=$2
 KEYSTORE_PASS=${3:-"android"}

@@ -135,6 +135,7 @@ public class BasicAPI {
 
     private static SootClass reportSootClassInfo() {
         System.out.println("-----Class-----");
+        System.out.println("-----Class-Scene : "+Scene.v());
         SootClass circleClass = Scene.v().getSootClass(circleClassName);
         System.out.println(String.format("The class %s is an %s class, loaded with %d methods! ",
                 circleClass.getName(), circleClass.isApplicationClass() ? "Application" : "Library", circleClass.getMethodCount()));
