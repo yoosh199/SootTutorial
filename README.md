@@ -1,3 +1,57 @@
+# Soot를 활용한 APK 앱 특정 UI 분산
+
+## 1. 사전 작업
+
+`src` 폴더 안에 있는 `AndroidUiDistribution.java`에서 아래 변수들을 설정합니다.
+
+### 설정 변수
+
+- **uiMovedActivity**  
+  옮길 UI를 표시할 Activity 이름  
+  *(Soot 특성상 XML 레이아웃을 직접 탐색할 수 없기 때문에 Activity를 지정해야 합니다. 즉 Activity를 새로 생성하고, Manifest.xml 등록까지 해야합니다.)*
+
+  
+- **applicationName**  
+  현재 앱의 `Application` 클래스 이름(없으면 생성해야 합니다.)
+
+- **moveButton**  
+  UI 이동 기능을 수행하는 버튼(private 같은 접근 제한자를 붙이면 안됩니다.)
+  *(버튼 클릭 시 UI가 다른 Activity로 이동합니다. 옮길 UI가 있는 layout에서 Button을 추가하면 됩니다.)*
+
+- **removeView**  
+  이동할 UI View(private 같은 접근 제한자를 붙이면 안됩니다.)
+  *(현재 Activity에서 제거된 후 `uiMovedActivity`에서 다시 렌더링됩니다. 변수 타입은 View 로 하면 됩니다.)*
+
+
+## 2. 명령어 실행
+
+* `./gradlew run --args="AndroidUiDistribution"`
+
+```aidl
+cd ./demo/Android
+./sign.sh Instrumented/app-debug.apk key "android"
+adb install -r -t Instrumented/app-debug.apk
+```
+
+
+## 3. 예시
+
+<img src="docs/example/remove_layout.png" alt="remove_layout" width="400"/>
+이렇게 id가 draws 인 LinearLayout을 옮긴다고 가정합시다. 오른쪽 UI 처럼 UI 이동 버튼을 옮길 layout 안에 하나 만듭니다.  
+<img src="docs/example/move_btn.png" alt="move_btn" width="400"/>
+
+
+<img src="docs/example/new_activity.png" alt="new_activity" width="400"/>
+새로운 Activitiy를 하나 생성합니다. Manifest.xml에도 등록을 해줍니다.
+
+<img src="docs/example/view1.png" alt="view1" width="400"/>
+<img src="docs/example/view2.png" alt="view2" width="400"/>
+이렇게 moveButton, removeView 변수를 설정해줍니다. 접근 제한자 붙이면 안됩니다.
+
+
+
+
+
 # Soot Tutorial
 [![Build Status](https://travis-ci.com/noidsirius/SootTutorial.svg?branch=master)](https://travis-ci.com/noidsirius/SootTutorial)
 [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/noidsirius/SootTutorial)

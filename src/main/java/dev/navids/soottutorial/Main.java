@@ -4,6 +4,7 @@ import dev.navids.soottutorial.android.AndroidClassInjector;
 import dev.navids.soottutorial.android.AndroidLogger;
 import dev.navids.soottutorial.android.AndroidCallgraph;
 import dev.navids.soottutorial.android.AndroidPointsToAnalysis;
+import dev.navids.soottutorial.android.AndroidUiDistribution;
 import dev.navids.soottutorial.basicapi.BasicAPI;
 import dev.navids.soottutorial.hellosoot.HelloSoot;
 import dev.navids.soottutorial.intraanalysis.npanalysis.NPAMain;
@@ -24,6 +25,9 @@ public class Main {
             BasicAPI.main(restOfTheArgs);
         else if(args[0].equals("AndroidLogger")) {
             AndroidLogger.main(restOfTheArgs);
+        }
+            else if(args[0].equals("AndroidUiDistribution")) {
+            AndroidUiDistribution.main(restOfTheArgs);
         }
         else if(args[0].equals("AndroidClassInjector")) {
             AndroidClassInjector.main(restOfTheArgs);
